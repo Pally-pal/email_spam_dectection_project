@@ -1,0 +1,51 @@
+# ── Python ────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Virtual environments ───────────────────────────────────
+venv/
+.venv/
+env/
+.env/
+spam_detection/
+
+# ── Dataset (upload to Render manually or via Render Disk) ─
+data/spam.csv
+
+# ── Trained models (regenerated on first dashboard train) ──
+models/saved/*.pkl
+
+# ── Generated reports and figures (rebuilt on each train) ──
+reports/figures/*.png
+reports/mbox_scan_results.csv
+
+# ── NLTK data (downloaded by build.sh) ────────────────────
+nltk_data/
+
+# ── Secrets and environment ────────────────────────────────
+.env
+*.env
+*.secret
+
+# ── OS files ──────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE files ─────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ── Logs ──────────────────────────────────────────────────
+*.log

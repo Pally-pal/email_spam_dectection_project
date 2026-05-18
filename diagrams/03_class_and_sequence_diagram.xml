@@ -1,0 +1,241 @@
+<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="827" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- CLASS DIAGRAM                                               -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- Title -->
+    <mxCell id="title3" value="Email Spam Detection System – Class Diagram" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="200" y="20" width="760" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- ── Row 1: EmailMessage, DataLoader, TextPreprocessor ── -->
+
+    <mxCell id="cls1" value="EmailMessage" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="60" y="80" width="240" height="160" as="geometry" />
+    </mxCell>
+    <mxCell id="cls1a" value="- message_id: str&#xa;- raw_text: str&#xa;- label: int&#xa;- subject: str" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls1">
+      <mxGeometry y="30" width="240" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="cls1b" value="+ get_text(): str&#xa;+ get_label(): int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls1">
+      <mxGeometry y="100" width="240" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="cls2" value="DataLoader" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="340" y="80" width="240" height="160" as="geometry" />
+    </mxCell>
+    <mxCell id="cls2a" value="- filepath: str&#xa;- dataset: DataFrame&#xa;- class_distribution: dict" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls2">
+      <mxGeometry y="30" width="240" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="cls2b" value="+ load_csv(): DataFrame&#xa;+ audit_data(): dict&#xa;+ get_class_distribution(): dict" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls2">
+      <mxGeometry y="100" width="240" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="cls3" value="TextPreprocessor" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="620" y="80" width="260" height="180" as="geometry" />
+    </mxCell>
+    <mxCell id="cls3a" value="- stop_words: set&#xa;- stemmer: PorterStemmer&#xa;- lowercase: bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls3">
+      <mxGeometry y="30" width="260" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="cls3b" value="+ clean_text(text: str): str&#xa;+ tokenize(text: str): list&#xa;+ stem_tokens(tokens: list): list&#xa;+ preprocess_pipeline(text: str): str" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls3">
+      <mxGeometry y="100" width="260" height="80" as="geometry" />
+    </mxCell>
+
+    <!-- ── Row 2: FeatureExtractor, BaseClassifier (abstract), ModelEvaluator ── -->
+
+    <mxCell id="cls4" value="FeatureExtractor" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="60" y="320" width="260" height="180" as="geometry" />
+    </mxCell>
+    <mxCell id="cls4a" value="- vectorizer: TfidfVectorizer&#xa;- max_features: int&#xa;- ngram_range: tuple&#xa;- feature_matrix: ndarray" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls4">
+      <mxGeometry y="30" width="260" height="80" as="geometry" />
+    </mxCell>
+    <mxCell id="cls4b" value="+ fit_transform(corpus): ndarray&#xa;+ transform(corpus): ndarray&#xa;+ chi2_selection(X, y): ndarray&#xa;+ get_feature_names(): list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls4">
+      <mxGeometry y="110" width="260" height="70" as="geometry" />
+    </mxCell>
+
+    <mxCell id="cls5" value="«abstract»&#xa;BaseClassifier" style="swimlane;fontStyle=3;align=center;startSize=50;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="380" y="320" width="240" height="180" as="geometry" />
+    </mxCell>
+    <mxCell id="cls5a" value="# model: object&#xa;# name: str&#xa;# is_fitted: bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls5">
+      <mxGeometry y="50" width="240" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="cls5b" value="+ train(X, y): void&#xa;+ predict(X): ndarray&#xa;+ predict_proba(X): ndarray" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls5">
+      <mxGeometry y="120" width="240" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="cls11" value="ModelEvaluator" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="680" y="320" width="260" height="180" as="geometry" />
+    </mxCell>
+    <mxCell id="cls11a" value="- results: dict&#xa;- best_model: BaseClassifier&#xa;- metrics: list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls11">
+      <mxGeometry y="30" width="260" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="cls11b" value="+ evaluate(clf, X_test, y_test): dict&#xa;+ plot_confusion_matrix(): void&#xa;+ plot_roc_curve(): void&#xa;+ select_best_model(): BaseClassifier" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls11">
+      <mxGeometry y="100" width="260" height="80" as="geometry" />
+    </mxCell>
+
+    <!-- ── Row 3: Concrete classifiers (5) ── -->
+
+    <mxCell id="cls6" value="NaiveBayesClassifier" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="20" y="580" width="190" height="90" as="geometry" />
+    </mxCell>
+    <mxCell id="cls6a" value="- alpha: float&#xa;+ build_model(): void&#xa;+ train(X, y): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;" vertex="1" parent="cls6">
+      <mxGeometry y="30" width="190" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="cls7" value="DecisionTreeClassifier" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="220" y="580" width="190" height="90" as="geometry" />
+    </mxCell>
+    <mxCell id="cls7a" value="- max_depth: int&#xa;+ build_model(): void&#xa;+ train(X, y): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;" vertex="1" parent="cls7">
+      <mxGeometry y="30" width="190" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="cls8" value="RandomForestClassifier" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="420" y="580" width="190" height="90" as="geometry" />
+    </mxCell>
+    <mxCell id="cls8a" value="- n_estimators: int&#xa;+ build_model(): void&#xa;+ train(X, y): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;" vertex="1" parent="cls8">
+      <mxGeometry y="30" width="190" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="cls9" value="SVMClassifier" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="620" y="580" width="190" height="90" as="geometry" />
+    </mxCell>
+    <mxCell id="cls9a" value="- kernel: str&#xa;+ build_model(): void&#xa;+ train(X, y): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;" vertex="1" parent="cls9">
+      <mxGeometry y="30" width="190" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="cls10" value="LogisticRegressionClassifier" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="820" y="580" width="210" height="90" as="geometry" />
+    </mxCell>
+    <mxCell id="cls10a" value="- C: float&#xa;+ build_model(): void&#xa;+ train(X, y): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;" vertex="1" parent="cls10">
+      <mxGeometry y="30" width="210" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- ── Class relationships ── -->
+
+    <!-- DataLoader uses EmailMessage -->
+    <mxCell id="cr1" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;" edge="1" source="cls2" target="cls1" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <!-- FeatureExtractor uses TextPreprocessor -->
+    <mxCell id="cr2" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;" edge="1" source="cls4" target="cls3" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <!-- BaseClassifier depends on FeatureExtractor -->
+    <mxCell id="cr3" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;" edge="1" source="cls5" target="cls4" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <!-- Concrete classifiers extend BaseClassifier (inheritance, dashed) -->
+    <mxCell id="cr4" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=1;" edge="1" source="cls6"  target="cls5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="cr5" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=1;" edge="1" source="cls7"  target="cls5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="cr6" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=1;" edge="1" source="cls8"  target="cls5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="cr7" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=1;" edge="1" source="cls9"  target="cls5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="cr8" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=1;" edge="1" source="cls10" target="cls5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <!-- ModelEvaluator uses BaseClassifier -->
+    <mxCell id="cr9" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;" edge="1" source="cls11" target="cls5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SEQUENCE DIAGRAM  (starts at y = 760)                      -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- Divider label -->
+    <mxCell id="div_line" value="" style="line;strokeWidth=1;strokeColor=#cccccc;fillColor=none;" vertex="1" parent="1">
+      <mxGeometry x="20" y="740" width="1020" height="10" as="geometry" />
+    </mxCell>
+
+    <!-- Title -->
+    <mxCell id="title4" value="Email Spam Detection System – Sequence Diagram (Email Classification Flow)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="100" y="758" width="840" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- ── Lifeline headers ── -->
+    <mxCell id="ll_user" value="User" style="shape=mxgraph.flowchart.actor;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="60" y="820" width="40" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="ll_prep" value="TextPreprocessor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="200" y="820" width="140" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="ll_feat" value="FeatureExtractor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="400" y="820" width="140" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="ll_clf" value="Classifier&#xa;(Best Model)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="590" y="820" width="140" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="ll_eval" value="ModelEvaluator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="780" y="820" width="140" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- ── Lifeline dashed lines ── -->
+    <mxCell id="ll_user_line" value="" style="endArrow=none;dashed=1;strokeColor=#6c8ebf;" edge="1" source="ll_user" parent="1">
+      <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="80" y="1470" /></Array></mxGeometry>
+    </mxCell>
+    <mxCell id="ll_prep_line" value="" style="endArrow=none;dashed=1;strokeColor=#d6b656;" edge="1" source="ll_prep" parent="1">
+      <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="270" y="1470" /></Array></mxGeometry>
+    </mxCell>
+    <mxCell id="ll_feat_line" value="" style="endArrow=none;dashed=1;strokeColor=#d6b656;" edge="1" source="ll_feat" parent="1">
+      <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="470" y="1470" /></Array></mxGeometry>
+    </mxCell>
+    <mxCell id="ll_clf_line" value="" style="endArrow=none;dashed=1;strokeColor=#9673a6;" edge="1" source="ll_clf" parent="1">
+      <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="660" y="1470" /></Array></mxGeometry>
+    </mxCell>
+    <mxCell id="ll_eval_line" value="" style="endArrow=none;dashed=1;strokeColor=#6c8ebf;" edge="1" source="ll_eval" parent="1">
+      <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="850" y="1470" /></Array></mxGeometry>
+    </mxCell>
+
+    <!-- ── Sequence messages ── -->
+
+    <!-- 1: User → TextPreprocessor: submit_email -->
+    <mxCell id="sm1" value="submit_email(raw_text)" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;fontSize=11;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="80" y="910" as="sourcePoint" /><mxPoint x="270" y="910" as="targetPoint" /></mxGeometry>
+    </mxCell>
+
+    <!-- 2: TextPreprocessor self-call: preprocess_pipeline -->
+    <mxCell id="sm2" value="preprocess_pipeline(text)" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;fontSize=11;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="270" y="960" as="sourcePoint" />
+        <mxPoint x="270" y="960" as="targetPoint" />
+        <Array as="points"><mxPoint x="270" y="960" /></Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="sm2b" value="clean_text → tokenize → stem" style="text;fontSize=10;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="185" y="965" width="170" height="20" as="geometry" />
+    </mxCell>
+
+    <!-- 3: TextPreprocessor → User: return cleaned_text -->
+    <mxCell id="sm3" value="cleaned_text" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;dashed=1;fontSize=11;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="270" y="1000" as="sourcePoint" /><mxPoint x="80" y="1000" as="targetPoint" /></mxGeometry>
+    </mxCell>
+
+    <!-- 4: User → FeatureExtractor: transform -->
+    <mxCell id="sm4" value="transform(cleaned_text)" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;fontSize=11;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="80" y="1050" as="sourcePoint" /><mxPoint x="470" y="1050" as="targetPoint" /></mxGeometry>
+    </mxCell>
+
+    <!-- 5: FeatureExtractor → User: return tfidf_vector -->
+    <mxCell id="sm5" value="tfidf_vector" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;dashed=1;fontSize=11;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="470" y="1090" as="sourcePoint" /><mxPoint x="80" y="1090" as="targetPoint" /></mxGeometry>
+    </mxCell>
+
+    <!-- 6: User → Classifier: predict -->
+    <mxCell id="sm6" value="predict(tfidf_vector)" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;fontSize=11;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="80" y="1140" as="sourcePoint" /><mxPoint x="660" y="1140" as="targetPoint" /></mxGeometry>
+    </mxCell>
+
+    <!-- 7: Classifier → User: return label -->
+    <mxCell id="sm7" value="label (0=ham, 1=spam)" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;dashed=1;fontSize=11;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="660" y="1180" as="sourcePoint" /><mxPoint x="80" y="1180" as="targetPoint" /></mxGeometry>
+    </mxCell>
+
+    <!-- 8: User → ModelEvaluator: evaluate -->
+    <mxCell id="sm8" value="evaluate(clf, X_test, y_test)" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;fontSize=11;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="80" y="1250" as="sourcePoint" /><mxPoint x="850" y="1250" as="targetPoint" /></mxGeometry>
+    </mxCell>
+
+    <!-- 9: ModelEvaluator → User: return metrics report -->
+    <mxCell id="sm9" value="metrics report" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;dashed=1;fontSize=11;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="850" y="1290" as="sourcePoint" /><mxPoint x="80" y="1290" as="targetPoint" /></mxGeometry>
+    </mxCell>
+
+    <!-- 10: User displays result -->
+    <mxCell id="sm10" value="display_result(label, metrics)" style="text;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="80" y="1320" width="230" height="25" as="geometry" />
+    </mxCell>
+
+  </root>
+</mxGraphModel>

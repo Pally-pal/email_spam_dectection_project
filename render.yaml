@@ -1,0 +1,53 @@
+# render.yaml
+# ============================================================
+# Render Blueprint — Email Spam Detection Dashboard
+# https://render.com/docs/blueprint-spec
+#
+# Deploy steps:
+#   1. Push your project to a GitHub repository
+#   2. Go to https://dashboard.render.com
+#   3. Click "New" → "Blueprint"
+#   4. Connect your GitHub repo
+#   5. Render reads this file and creates the web service automatically
+# ============================================================
+
+services:
+  - type: web
+    name: email-spam-detection
+    runtime: python
+    region: oregon          # change to: frankfurt | singapore | ohio
+    plan: free              # free tier; upgrade to starter for always-on
+
+    # ── Build ────────────────────────────────────────────────
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+      python -c "import nltk; nltk.download('stopwords', quiet=True); nltk.download('punkt', quiet=True)"
+
+    # ── Start ────────────────────────────────────────────────
+    # Render runs from the repo root; we point gunicorn at
+    # the Flask app object inside dashboard/app.py
+    startCommand: gunicorn "dashboard.app:app" --bind 0.0.0.0:$PORT --workers 2 --timeout 120 --log-level info
+
+    # ── Environment variables ─────────────────────────────────
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+      - key: FLASK_ENV
+        value: production
+      - key: PYTHONDONTWRITEBYTECODE
+        value: "1"
+      - key: PYTHONUNBUFFERED
+        value: "1"
+
+    # ── Health check ──────────────────────────────────────────
+    healthCheckPath: /
+
+    # ── Disk (persistent storage for models + figures) ────────
+    # Free tier: no persistent disk — models are rebuilt on each
+    # deploy via the build command or on first dashboard train.
+    # Paid tier: uncomment the lines below for persistent storage.
+    # disk:
+    #   name: spam-data
+    #   mountPath: /opt/render/project/src/data
+    #   sizeGB: 1

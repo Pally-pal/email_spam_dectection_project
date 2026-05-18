@@ -1,0 +1,417 @@
+<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+
+<!-- ============================================================ -->
+<!-- PAGE 1: USE CASE DIAGRAM                                      -->
+<!-- ============================================================ -->
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- Title -->
+    <mxCell id="title1" value="Email Spam Detection System – Use Case Diagram" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="200" y="20" width="700" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- System Boundary -->
+    <mxCell id="sys" value="Email Spam Detection System" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];shape=mxgraph.flowchart.start_2;fillColor=none;strokeColor=#000000;strokeWidth=2;align=center;verticalAlign=top;spacingTop=10;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="280" y="80" width="600" height="640" as="geometry" />
+    </mxCell>
+
+    <!-- Actors -->
+    <mxCell id="user" value="User" style="shape=mxgraph.flowchart.actor;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="60" y="250" width="60" height="80" as="geometry" />
+    </mxCell>
+
+    <mxCell id="admin" value="Admin" style="shape=mxgraph.flowchart.actor;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="1000" y="250" width="60" height="80" as="geometry" />
+    </mxCell>
+
+    <!-- Use Cases -->
+    <mxCell id="uc1" value="Submit Email for Classification" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="310" y="110" width="220" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="uc2" value="Preprocess Email Text" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="310" y="210" width="220" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="uc3" value="Extract TF-IDF Features" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="310" y="310" width="220" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="uc4" value="Classify Email (Spam/Ham)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="310" y="410" width="220" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="uc5" value="View Classification Result" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="310" y="510" width="220" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="uc6" value="View Performance Metrics" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="310" y="610" width="220" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="uc7" value="Load &amp; Preprocess Dataset" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="610" y="110" width="220" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="uc8" value="Train ML Models" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="610" y="210" width="220" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="uc9" value="Evaluate Model Performance" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="610" y="310" width="220" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="uc10" value="Select Optimal Model" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="610" y="410" width="220" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="uc11" value="Generate Confusion Matrix" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="610" y="510" width="220" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="uc12" value="Generate ROC Curve" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="610" y="610" width="220" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- User associations -->
+    <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="user" target="uc1" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="user" target="uc5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="user" target="uc6" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+    <!-- Admin associations -->
+    <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="admin" target="uc7" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="admin" target="uc8" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="admin" target="uc9" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="admin" target="uc10" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="admin" target="uc11" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="admin" target="uc12" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+    <!-- include relationships -->
+    <mxCell id="inc1" value="&lt;&lt;include&gt;&gt;" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" edge="1" source="uc1" target="uc2" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="inc2" value="&lt;&lt;include&gt;&gt;" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" edge="1" source="uc2" target="uc3" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="inc3" value="&lt;&lt;include&gt;&gt;" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" edge="1" source="uc3" target="uc4" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="inc4" value="&lt;&lt;include&gt;&gt;" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" edge="1" source="uc4" target="uc5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="inc5" value="&lt;&lt;include&gt;&gt;" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" edge="1" source="uc8" target="uc7" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="inc6" value="&lt;&lt;include&gt;&gt;" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" edge="1" source="uc9" target="uc11" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="inc7" value="&lt;&lt;include&gt;&gt;" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" edge="1" source="uc9" target="uc12" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="inc8" value="&lt;&lt;include&gt;&gt;" style="edgeStyle=orthogonalEdgeStyle;dashed=1;" edge="1" source="uc9" target="uc10" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+<!-- ============================================================ -->
+<!-- ACTIVITY DIAGRAM (positioned below)                          -->
+<!-- ============================================================ -->
+
+    <mxCell id="title2" value="Email Spam Detection System – Activity Diagram" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="200" y="800" width="700" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- Start -->
+    <mxCell id="act_start" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="520" y="860" width="30" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- Activities -->
+    <mxCell id="act1" value="Collect Email Dataset" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="435" y="920" width="200" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="act2" value="Initial Data Audit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="435" y="1000" width="200" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="act3" value="Preprocess Text&#xa;(Lowercase, Remove Punctuation, Stop-words, Stemming)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="385" y="1080" width="300" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="act4" value="Extract TF-IDF Features&#xa;(Unigrams + Bigrams)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="385" y="1170" width="300" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="act5" value="Chi-Squared Feature Selection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="435" y="1260" width="200" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="act6" value="Stratified Train/Test Split (80/20)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="435" y="1340" width="200" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- Decision fork -->
+    <mxCell id="fork1" value="" style="rhombus;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="510" y="1420" width="50" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="fork_label" value="For each ML Algorithm" style="text;html=1;fontSize=11;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="570" y="1435" width="160" height="20" as="geometry" />
+    </mxCell>
+
+    <mxCell id="act7a" value="Train Naïve Bayes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="140" y="1510" width="160" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="act7b" value="Train Decision Tree" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="320" y="1510" width="160" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="act7c" value="Train Random Forest" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="500" y="1510" width="160" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="act7d" value="Train SVM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="680" y="1510" width="160" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="act7e" value="Train Logistic Regression" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="860" y="1510" width="160" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- Join -->
+    <mxCell id="join1" value="" style="rhombus;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="510" y="1600" width="50" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="act8" value="Evaluate Each Model&#xa;(Precision, Recall, F1, Accuracy, AUC)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="385" y="1680" width="300" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="act9" value="Generate Confusion Matrix &amp; ROC Curve" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="385" y="1770" width="300" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="act10" value="Select Best Model (Highest F1-Score)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="435" y="1860" width="200" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="act11" value="Deploy for Email Classification" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="435" y="1940" width="200" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- End -->
+    <mxCell id="act_end" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;aspect=fixed;" vertex="1" parent="1">
+      <mxGeometry x="520" y="2020" width="30" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="act_end2" value="" style="ellipse;fillColor=#ffffff;strokeColor=#000000;aspect=fixed;" vertex="1" parent="1">
+      <mxGeometry x="514" y="2014" width="42" height="42" as="geometry" />
+    </mxCell>
+
+    <!-- Activity edges -->
+    <mxCell id="ae1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act_start" target="act1" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act1" target="act2" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae3" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act2" target="act3" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae4" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act3" target="act4" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae5" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act4" target="act5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae6" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act5" target="act6" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae7" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act6" target="fork1" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae8a" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="fork1" target="act7a" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae8b" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="fork1" target="act7b" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae8c" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="fork1" target="act7c" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae8d" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="fork1" target="act7d" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae8e" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="fork1" target="act7e" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae9a" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act7a" target="join1" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae9b" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act7b" target="join1" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae9c" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act7c" target="join1" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae9d" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act7d" target="join1" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae9e" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act7e" target="join1" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae10" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="join1" target="act8" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae11" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act8" target="act9" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae12" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act9" target="act10" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae13" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act10" target="act11" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="ae14" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="act11" target="act_end2" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+<!-- ============================================================ -->
+<!-- CLASS DIAGRAM (positioned further below)                     -->
+<!-- ============================================================ -->
+
+    <mxCell id="title3" value="Email Spam Detection System – Class Diagram" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="200" y="2120" width="700" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- EmailMessage class -->
+    <mxCell id="cls1" value="EmailMessage" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="60" y="2180" width="240" height="160" as="geometry" />
+    </mxCell>
+    <mxCell id="cls1a" value="- message_id: str&#xa;- raw_text: str&#xa;- label: int&#xa;- subject: str" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls1">
+      <mxGeometry y="30" width="240" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="cls1b" value="+ get_text(): str&#xa;+ get_label(): int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls1">
+      <mxGeometry y="100" width="240" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- DataLoader class -->
+    <mxCell id="cls2" value="DataLoader" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="340" y="2180" width="240" height="160" as="geometry" />
+    </mxCell>
+    <mxCell id="cls2a" value="- filepath: str&#xa;- dataset: DataFrame&#xa;- class_distribution: dict" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls2">
+      <mxGeometry y="30" width="240" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="cls2b" value="+ load_csv(): DataFrame&#xa;+ audit_data(): dict&#xa;+ get_class_distribution(): dict" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls2">
+      <mxGeometry y="100" width="240" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- TextPreprocessor class -->
+    <mxCell id="cls3" value="TextPreprocessor" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="620" y="2180" width="260" height="180" as="geometry" />
+    </mxCell>
+    <mxCell id="cls3a" value="- stop_words: set&#xa;- stemmer: PorterStemmer&#xa;- lowercase: bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls3">
+      <mxGeometry y="30" width="260" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="cls3b" value="+ clean_text(text: str): str&#xa;+ tokenize(text: str): list&#xa;+ stem_tokens(tokens: list): list&#xa;+ preprocess_pipeline(text: str): str" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls3">
+      <mxGeometry y="100" width="260" height="80" as="geometry" />
+    </mxCell>
+
+    <!-- FeatureExtractor class -->
+    <mxCell id="cls4" value="FeatureExtractor" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="60" y="2400" width="260" height="180" as="geometry" />
+    </mxCell>
+    <mxCell id="cls4a" value="- vectorizer: TfidfVectorizer&#xa;- max_features: int&#xa;- ngram_range: tuple&#xa;- feature_matrix: ndarray" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls4">
+      <mxGeometry y="30" width="260" height="80" as="geometry" />
+    </mxCell>
+    <mxCell id="cls4b" value="+ fit_transform(corpus): ndarray&#xa;+ transform(corpus): ndarray&#xa;+ chi2_selection(X, y): ndarray&#xa;+ get_feature_names(): list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls4">
+      <mxGeometry y="110" width="260" height="70" as="geometry" />
+    </mxCell>
+
+    <!-- BaseClassifier abstract class -->
+    <mxCell id="cls5" value="«abstract»&#xa;BaseClassifier" style="swimlane;fontStyle=3;align=center;startSize=50;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="380" y="2400" width="240" height="180" as="geometry" />
+    </mxCell>
+    <mxCell id="cls5a" value="# model: object&#xa;# name: str&#xa;# is_fitted: bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls5">
+      <mxGeometry y="50" width="240" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="cls5b" value="+ train(X, y): void&#xa;+ predict(X): ndarray&#xa;+ predict_proba(X): ndarray" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls5">
+      <mxGeometry y="120" width="240" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- Concrete classifiers -->
+    <mxCell id="cls6" value="NaiveBayesClassifier" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="60" y="2650" width="200" height="80" as="geometry" />
+    </mxCell>
+    <mxCell id="cls6a" value="- alpha: float&#xa;+ train(X,y): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;" vertex="1" parent="cls6">
+      <mxGeometry y="30" width="200" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="cls7" value="DecisionTreeClassifier" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="280" y="2650" width="200" height="80" as="geometry" />
+    </mxCell>
+    <mxCell id="cls7a" value="- max_depth: int&#xa;+ train(X,y): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;" vertex="1" parent="cls7">
+      <mxGeometry y="30" width="200" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="cls8" value="RandomForestClassifier" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="500" y="2650" width="200" height="80" as="geometry" />
+    </mxCell>
+    <mxCell id="cls8a" value="- n_estimators: int&#xa;+ train(X,y): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;" vertex="1" parent="cls8">
+      <mxGeometry y="30" width="200" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="cls9" value="SVMClassifier" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="720" y="2650" width="200" height="80" as="geometry" />
+    </mxCell>
+    <mxCell id="cls9a" value="- kernel: str&#xa;+ train(X,y): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;" vertex="1" parent="cls9">
+      <mxGeometry y="30" width="200" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="cls10" value="LogisticRegressionClassifier" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="940" y="2650" width="200" height="80" as="geometry" />
+    </mxCell>
+    <mxCell id="cls10a" value="- C: float&#xa;+ train(X,y): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;" vertex="1" parent="cls10">
+      <mxGeometry y="30" width="200" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- ModelEvaluator -->
+    <mxCell id="cls11" value="ModelEvaluator" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="700" y="2400" width="260" height="180" as="geometry" />
+    </mxCell>
+    <mxCell id="cls11a" value="- results: dict&#xa;- best_model: BaseClassifier&#xa;- metrics: list" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls11">
+      <mxGeometry y="30" width="260" height="70" as="geometry" />
+    </mxCell>
+    <mxCell id="cls11b" value="+ evaluate(clf, X_test, y_test): dict&#xa;+ plot_confusion_matrix(): void&#xa;+ plot_roc_curve(): void&#xa;+ select_best_model(): BaseClassifier" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="cls11">
+      <mxGeometry y="100" width="260" height="80" as="geometry" />
+    </mxCell>
+
+    <!-- Class relationships -->
+    <mxCell id="cr1" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;" edge="1" source="cls2" target="cls1" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="cr2" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;" edge="1" source="cls4" target="cls3" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="cr3" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;" edge="1" source="cls5" target="cls4" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="cr4" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=1;" edge="1" source="cls6" target="cls5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="cr5" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=1;" edge="1" source="cls7" target="cls5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="cr6" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=1;" edge="1" source="cls8" target="cls5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="cr7" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=1;" edge="1" source="cls9" target="cls5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="cr8" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;dashed=1;" edge="1" source="cls10" target="cls5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="cr9" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;" edge="1" source="cls11" target="cls5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+<!-- ============================================================ -->
+<!-- SEQUENCE DIAGRAM (positioned further below)                  -->
+<!-- ============================================================ -->
+
+    <mxCell id="title4" value="Email Spam Detection System – Sequence Diagram (Email Classification Flow)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="100" y="2810" width="950" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- Lifelines -->
+    <mxCell id="ll_user" value="User" style="shape=mxgraph.flowchart.actor;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="60" y="2870" width="40" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="ll_user_line" value="" style="endArrow=none;dashed=1;strokeColor=#6c8ebf;" edge="1" source="ll_user" parent="1">
+      <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="80" y="3530" /></Array></mxGeometry>
+    </mxCell>
+
+    <mxCell id="ll_prep" value="TextPreprocessor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="200" y="2870" width="140" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="ll_prep_line" value="" style="endArrow=none;dashed=1;strokeColor=#d6b656;" edge="1" source="ll_prep" parent="1">
+      <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="270" y="3530" /></Array></mxGeometry>
+    </mxCell>
+
+    <mxCell id="ll_feat" value="FeatureExtractor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="380" y="2870" width="140" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="ll_feat_line" value="" style="endArrow=none;dashed=1;strokeColor=#d6b656;" edge="1" source="ll_feat" parent="1">
+      <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="450" y="3530" /></Array></mxGeometry>
+    </mxCell>
+
+    <mxCell id="ll_clf" value="Classifier&#xa;(Best Model)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="560" y="2870" width="140" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="ll_clf_line" value="" style="endArrow=none;dashed=1;strokeColor=#9673a6;" edge="1" source="ll_clf" parent="1">
+      <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="630" y="3530" /></Array></mxGeometry>
+    </mxCell>
+
+    <mxCell id="ll_eval" value="ModelEvaluator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="740" y="2870" width="140" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="ll_eval_line" value="" style="endArrow=none;dashed=1;strokeColor=#6c8ebf;" edge="1" source="ll_eval" parent="1">
+      <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="810" y="3530" /></Array></mxGeometry>
+    </mxCell>
+
+    <!-- Sequence messages -->
+    <mxCell id="sm1" value="submit_email(raw_text)" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="80" y="2960" as="sourcePoint" /><mxPoint x="270" y="2960" as="targetPoint" /></mxGeometry>
+    </mxCell>
+    <mxCell id="sm2" value="preprocess_pipeline(text)" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="270" y="3000" as="sourcePoint" /><mxPoint x="270" y="3000" as="targetPoint" /><Array as="points"><mxPoint x="270" y="3000" /></Array></mxGeometry>
+    </mxCell>
+    <mxCell id="sm2b" value="clean_text → tokenize → stem" style="text;fontSize=10;fontStyle=2;" vertex="1" parent="1">
+      <mxGeometry x="185" y="3005" width="170" height="20" as="geometry" />
+    </mxCell>
+    <mxCell id="sm3" value="cleaned_text" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;dashed=1;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="270" y="3040" as="sourcePoint" /><mxPoint x="80" y="3040" as="targetPoint" /></mxGeometry>
+    </mxCell>
+    <mxCell id="sm4" value="transform(cleaned_text)" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="80" y="3080" as="sourcePoint" /><mxPoint x="450" y="3080" as="targetPoint" /></mxGeometry>
+    </mxCell>
+    <mxCell id="sm5" value="tfidf_vector" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;dashed=1;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="450" y="3120" as="sourcePoint" /><mxPoint x="80" y="3120" as="targetPoint" /></mxGeometry>
+    </mxCell>
+    <mxCell id="sm6" value="predict(tfidf_vector)" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="80" y="3160" as="sourcePoint" /><mxPoint x="630" y="3160" as="targetPoint" /></mxGeometry>
+    </mxCell>
+    <mxCell id="sm7" value="label (0=ham, 1=spam)" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;dashed=1;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="630" y="3200" as="sourcePoint" /><mxPoint x="80" y="3200" as="targetPoint" /></mxGeometry>
+    </mxCell>
+    <mxCell id="sm8" value="evaluate(clf, X_test, y_test)" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="80" y="3260" as="sourcePoint" /><mxPoint x="810" y="3260" as="targetPoint" /></mxGeometry>
+    </mxCell>
+    <mxCell id="sm9" value="metrics report" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;dashed=1;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry"><mxPoint x="810" y="3300" as="sourcePoint" /><mxPoint x="80" y="3300" as="targetPoint" /></mxGeometry>
+    </mxCell>
+    <mxCell id="sm10" value="display_result(label, metrics)" style="text;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="80" y="3330" width="220" height="25" as="geometry" />
+    </mxCell>
+
+  </root>
+</mxGraphModel>
