@@ -18,8 +18,6 @@ env/
 .env/
 spam_detection/
 
-# ── Dataset (upload to Render manually or via Render Disk) ─
-data/spam.csv
 
 # ── Trained models (regenerated on first dashboard train) ──
 models/saved/*.pkl
