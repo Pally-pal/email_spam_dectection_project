@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpamSentry — Email Intelligence Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/dashboard.css" />
+</head>
+<body>
+
+<!-- ░░ NOISE OVERLAY ░░ -->
+<div class="noise"></div>
+
+<!-- ░░ SIDEBAR ░░ -->
+<nav class="sidebar">
+  <div class="sidebar-brand">
+    <span class="brand-icon">⬡</span>
+    <div>
+      <div class="brand-name">SpamSentry</div>
+      <div class="brand-sub">ML Detection System</div>
+    </div>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#" class="nav-link active" data-section="overview">
+      <span class="nav-icon">◈</span> Overview
+    </a></li>
+    <li><a href="#" class="nav-link" data-section="classify">
+      <span class="nav-icon">◎</span> Classify Email
+    </a></li>
+    <li><a href="#" class="nav-link" data-section="models">
+      <span class="nav-icon">◫</span> Model Performance
+    </a></li>
+    <li><a href="#" class="nav-link" data-section="eda">
+      <span class="nav-icon">◳</span> Data Analysis
+    </a></li>
+    <li><a href="#" class="nav-link" data-section="train">
+      <span class="nav-icon">◬</span> Training Console
+    </a></li>
+    <li><a href="#" class="nav-link" data-section="scan">
+      <span class="nav-icon">◉</span> Scan Emails
+    </a></li>
+  </ul>
+
+  <div class="sidebar-status">
+    <div class="status-dot" id="globalStatus"></div>
+    <span id="globalStatusText">Checking…</span>
+  </div>
+</nav>
+
+<!-- ░░ MAIN ░░ -->
+<main class="main">
+
+  <!-- ── HEADER ── -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 class="page-title" id="pageTitle">Overview</h1>
+      <p class="page-sub">Development of a Machine Learning-Based Email Spam Detection System</p>
+    </div>
+    <div class="topbar-right">
+      <div class="chip" id="bestModelChip">
+        <span class="chip-label">BEST MODEL</span>
+        <span class="chip-value" id="bestModelName">—</span>
+      </div>
+      <button class="btn-train" id="trainBtn">▶ Train Pipeline</button>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECTION: OVERVIEW                                          -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="section active" id="section-overview">
+
+    <div class="stat-grid">
+      <div class="stat-card" id="stat-samples">
+        <div class="stat-icon">📧</div>
+        <div class="stat-body">
+          <div class="stat-label">Total Samples</div>
+          <div class="stat-value" id="sv-total">—</div>
+        </div>
+      </div>
+      <div class="stat-card" id="stat-spam">
+        <div class="stat-icon">🚨</div>
+        <div class="stat-body">
+          <div class="stat-label">Spam Messages</div>
+          <div class="stat-value red" id="sv-spam">—</div>
+        </div>
+      </div>
+      <div class="stat-card" id="stat-ham">
+        <div class="stat-icon">✉️</div>
+        <div class="stat-body">
+          <div class="stat-label">Ham Messages</div>
+          <div class="stat-value green" id="sv-ham">—</div>
+        </div>
+      </div>
+      <div class="stat-card" id="stat-best-f1">
+        <div class="stat-icon">🏆</div>
+        <div class="stat-body">
+          <div class="stat-label">Best F1-Score</div>
+          <div class="stat-value gold" id="sv-f1">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-2col">
+      <div class="card">
+        <div class="card-header">Class Distribution</div>
+        <div class="chart-wrap">
+          <canvas id="classChart"></canvas>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">Algorithm Comparison</div>
+        <div class="chart-wrap">
+          <canvas id="algoChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt">
+      <div class="card-header">Researcher Information</div>
+      <div class="researcher-grid">
+        <div class="researcher-item"><span class="ri-label">Author</span><span class="ri-value">Olarinoye Omowumi Racheal</span></div>
+        <div class="researcher-item"><span class="ri-label">Matric No.</span><span class="ri-value">2022/43935</span></div>
+        <div class="researcher-item"><span class="ri-label">Supervisor</span><span class="ri-value">Dr. P. Ozoh</span></div>
+        <div class="researcher-item"><span class="ri-label">Institution</span><span class="ri-value">Osun State University, Osogbo</span></div>
+        <div class="researcher-item"><span class="ri-label">Department</span><span class="ri-value">Computer Science, FCIT</span></div>
+        <div class="researcher-item"><span class="ri-label">Year</span><span class="ri-value">2026</span></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECTION: CLASSIFY                                          -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="section" id="section-classify">
+
+    <div class="classify-layout">
+      <div class="card classify-input-card">
+        <div class="card-header">Email Input</div>
+        <textarea id="emailInput" class="email-textarea"
+          placeholder="Paste email content here…&#10;&#10;e.g. Congratulations! You have won a FREE prize. Click HERE to claim your reward NOW!!!"></textarea>
+        <div class="classify-actions">
+          <button class="btn-primary" id="classifyBtn">Analyse Email</button>
+          <button class="btn-ghost" id="clearBtn">Clear</button>
+          <button class="btn-ghost" id="sampleSpamBtn">Sample Spam</button>
+          <button class="btn-ghost" id="sampleHamBtn">Sample Ham</button>
+        </div>
+      </div>
+
+      <div class="classify-result-col">
+        <div class="card verdict-card" id="verdictCard">
+          <div class="verdict-placeholder" id="verdictPlaceholder">
+            <div class="verdict-ph-icon">◎</div>
+            <div>Awaiting analysis…</div>
+          </div>
+          <div class="verdict-result hidden" id="verdictResult">
+            <div class="verdict-badge" id="verdictBadge"></div>
+            <div class="verdict-confidence" id="verdictConf"></div>
+            <div class="verdict-model" id="verdictModel"></div>
+          </div>
+        </div>
+
+        <div class="card predictions-card">
+          <div class="card-header">All Model Predictions</div>
+          <div class="predictions-table-wrap">
+            <table class="predictions-table">
+              <thead>
+                <tr><th>Model</th><th>Verdict</th><th>Confidence</th></tr>
+              </thead>
+              <tbody id="predictionsBody">
+                <tr><td colspan="3" class="empty-row">Run analysis to see predictions</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECTION: MODEL PERFORMANCE                                 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="section" id="section-models">
+
+    <div class="card">
+      <div class="card-header">Performance Metrics – All Classifiers</div>
+      <div class="table-wrap">
+        <table class="metrics-table" id="metricsTable">
+          <thead>
+            <tr>
+              <th>Algorithm</th>
+              <th>Accuracy</th>
+              <th>Precision</th>
+              <th>Recall</th>
+              <th>F1-Score</th>
+              <th>AUC</th>
+              <th>Rank</th>
+            </tr>
+          </thead>
+          <tbody id="metricsBody">
+            <tr><td colspan="7" class="empty-row">Train the pipeline to see results</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row-2col mt">
+      <div class="card">
+        <div class="card-header">ROC Curves</div>
+        <div class="figure-wrap" id="rocFigure">
+          <div class="figure-placeholder">Train pipeline to generate ROC curves</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">Confusion Matrix</div>
+        <div class="figure-selector">
+          <select id="cmModelSelect" class="select-input">
+            <option value="">— Select model —</option>
+          </select>
+        </div>
+        <div class="figure-wrap" id="cmFigure">
+          <div class="figure-placeholder">Select a model above</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt">
+      <div class="card-header">Metrics Comparison Chart</div>
+      <div class="figure-wrap tall" id="metricsFigure">
+        <div class="figure-placeholder">Train pipeline to see comparison</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECTION: DATA ANALYSIS                                     -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="section" id="section-eda">
+
+    <div class="eda-grid">
+      <div class="card">
+        <div class="card-header">Class Distribution</div>
+        <div class="figure-wrap" id="eda-class_distribution">
+          <div class="figure-placeholder">Train pipeline to generate EDA</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">Text Length Distribution</div>
+        <div class="figure-wrap" id="eda-text_length_distribution">
+          <div class="figure-placeholder">Train pipeline to generate EDA</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">Word Count Distribution</div>
+        <div class="figure-wrap" id="eda-word_count_distribution">
+          <div class="figure-placeholder">Train pipeline to generate EDA</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">Top Words by Class</div>
+        <div class="figure-wrap" id="eda-top_words">
+          <div class="figure-placeholder">Train pipeline to generate EDA</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECTION: TRAINING CONSOLE                                  -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section class="section" id="section-train">
+
+    <div class="console-layout">
+      <div class="card console-card">
+        <div class="card-header">
+          Pipeline Console
+          <span class="console-status" id="consoleStatus"></span>
+        </div>
+        <div class="console-log" id="consoleLog">
+          <div class="log-line dim">System ready. Click "Train Pipeline" to start.</div>
+        </div>
+      </div>
+
+      <div class="console-sidebar">
+        <div class="card">
+          <div class="card-header">Pipeline Stages</div>
+          <ul class="pipeline-stages">
+            <li class="stage" id="stage-load">
+              <span class="stage-icon">○</span>
+              <span>1. Data Loading</span>
+            </li>
+            <li class="stage" id="stage-eda">
+              <span class="stage-icon">○</span>
+              <span>2. Exploratory Analysis</span>
+            </li>
+            <li class="stage" id="stage-preprocess">
+              <span class="stage-icon">○</span>
+              <span>3. Text Preprocessing</span>
+            </li>
+            <li class="stage" id="stage-features">
+              <span class="stage-icon">○</span>
+              <span>4. TF-IDF Features</span>
+            </li>
+            <li class="stage" id="stage-train">
+              <span class="stage-icon">○</span>
+              <span>5. Model Training</span>
+            </li>
+            <li class="stage" id="stage-eval">
+              <span class="stage-icon">○</span>
+              <span>6. Evaluation</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card mt">
+          <div class="card-header">Configuration</div>
+          <ul class="config-list">
+            <li><span class="cfg-k">TF-IDF Max Features</span><span class="cfg-v">5,000</span></li>
+            <li><span class="cfg-k">N-gram Range</span><span class="cfg-v">(1, 2)</span></li>
+            <li><span class="cfg-k">Chi² Features</span><span class="cfg-v">3,000</span></li>
+            <li><span class="cfg-k">Train/Test Split</span><span class="cfg-v">80 / 20</span></li>
+            <li><span class="cfg-k">CV Folds</span><span class="cfg-v">10</span></li>
+            <li><span class="cfg-k">Scoring Metric</span><span class="cfg-v">F1-Score</span></li>
+          </ul>
+        </div>
+
+        <button class="btn-primary full mt" id="trainBtn2">▶ Start Training</button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECTION: SCAN EMAILS -->
+  <section class="section" id="section-scan">
+
+    <div class="card">
+      <div class="card-header">Scan Exported Email File</div>
+      <div style="padding:20px;">
+        <p style="color:var(--text-secondary);font-size:13px;margin-bottom:16px;line-height:1.7;">
+          Paste the full path to your exported <strong style="color:var(--text-primary)">.mbox</strong> file,
+          a <strong style="color:var(--text-primary)">.eml</strong> file,
+          or a <strong style="color:var(--text-primary)">folder of .eml files</strong>.
+          No credentials are required — your emails never leave your computer.
+        </p>
+
+        <div class="card" style="background:var(--bg-input);padding:14px 18px;margin-bottom:16px;">
+          <div style="font-size:10px;color:var(--text-dim);font-family:var(--font-mono);letter-spacing:.08em;margin-bottom:8px;">HOW TO EXPORT YOUR EMAILS</div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.8;font-family:var(--font-mono);">
+            <span style="color:var(--amber)">Gmail</span>   → takeout.google.com → select Mail → download ZIP → extract → find <em>All mail.mbox</em><br>
+            <span style="color:var(--amber)">Outlook</span> → File → Export → Import/Export → Export to .pst → convert to .mbox<br>
+            <span style="color:var(--amber)">Apple Mail</span> → Mailbox → Export Mailbox → .mbox bundle
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+          <input id="mboxPath" type="text" class="email-textarea"
+            style="min-height:auto;height:42px;flex:1;padding:0 14px;resize:none;font-size:13px;"
+            placeholder="e.g.  C:\Users\HP\Downloads\All mail.mbox  or  C:\exports\eml_folder" />
+          <button class="btn-primary" id="scanBtn" style="height:42px;white-space:nowrap;">
+            &#9654; Scan Emails
+          </button>
+        </div>
+
+        <div id="scanProgress" style="display:none;margin-top:20px;">
+          <div class="card-header" style="margin-bottom:10px;">
+            Scan Progress
+            <span class="console-status running" id="scanStatus">SCANNING</span>
+          </div>
+          <div style="display:flex;gap:24px;margin-bottom:16px;flex-wrap:wrap;">
+            <div class="stat-card" style="flex:1;min-width:140px;">
+              <div class="stat-icon">📧</div>
+              <div class="stat-body">
+                <div class="stat-label">Processed</div>
+                <div class="stat-value" id="scanProcessed">0</div>
+              </div>
+            </div>
+            <div class="stat-card" style="flex:1;min-width:140px;">
+              <div class="stat-icon">🚨</div>
+              <div class="stat-body">
+                <div class="stat-label">Spam Found</div>
+                <div class="stat-value red" id="scanSpam">0</div>
+              </div>
+            </div>
+            <div class="stat-card" style="flex:1;min-width:140px;">
+              <div class="stat-icon">✉️</div>
+              <div class="stat-body">
+                <div class="stat-label">Ham (Clean)</div>
+                <div class="stat-value green" id="scanHam">0</div>
+              </div>
+            </div>
+          </div>
+          <div id="scanError" style="display:none;color:var(--red);font-family:var(--font-mono);font-size:12px;padding:10px;background:#ff000010;border-radius:6px;margin-bottom:12px;"></div>
+          <div id="scanCsvNote" style="display:none;color:var(--teal);font-family:var(--font-mono);font-size:12px;margin-bottom:12px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt" id="scanResultsCard" style="display:none;">
+      <div class="card-header">Scan Results (first 200 shown — full report in CSV)</div>
+      <div class="table-wrap">
+        <table class="metrics-table">
+          <thead>
+            <tr>
+              <th>#</th><th>Date</th><th>From</th><th>Subject</th>
+              <th>Verdict</th><th>Confidence</th>
+            </tr>
+          </thead>
+          <tbody id="scanResultsBody">
+            <tr><td colspan="6" class="empty-row">No results yet</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- ░░ TOAST ░░ -->
+<div class="toast" id="toast"></div>
+
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="/static/js/dashboard.js"></script>
+</body>
+</html>
